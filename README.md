@@ -30,7 +30,7 @@ First, clone this repo:
 ```
 $ git clone https://github.com/tddschn/homebrew-alfred.git
 ```
-Then download the [Alfred workflow](), open it, and modify the scripts paths to the ones in the clone repository.
+Then download the [Alfred workflow](https://github.com/tddschn/homebrew-alfred/releases/download/0.1.0/homebrew.search.alfredworkflow), open it, and modify the scripts paths to the ones in the clone repository.
 
 ## Usage
 ### Alfred workflow usage
