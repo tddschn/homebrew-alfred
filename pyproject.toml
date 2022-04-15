@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "homebrew-alfred"
+version = "0.1.0"
+description = "An Alfred workflow for Homebrew - Searching for packages, getting stats, and many more"
+authors = ["Xinyuan Chen <45612704+tddschn@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+classifiers = [
+	"Operating System :: MacOS",
+	"Framework :: AsyncIO",
+	"License :: OSI Approved :: MIT License",
+	"Topic :: Utilities",
+	"Typing :: Typed"
+]
+homepage = "https://github.com/tddschn/git-pp"
+repository = "https://github.com/tddschn/git-pp"
+keywords = ["homebrew", "alfred"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+yapf = "^0.32.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
