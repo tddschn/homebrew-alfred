@@ -1,13 +1,39 @@
 # homebrew-alfred
 Python scripts for searching and displaying Homebrew package metadata, made for Alfred.
+
+- [homebrew-alfred](#homebrew-alfred)
+	- [Features](#features)
+		- [The Alfred workflow](#the-alfred-workflow)
+	- [Install](#install)
+	- [Usage](#usage)
+		- [Alfred workflow usage](#alfred-workflow-usage)
+		- [Command line usage](#command-line-usage)
+	- [Demo](#demo)
+	- [Project layout](#project-layout)
+		- [Core](#core)
+		- [Config and utility](#config-and-utility)
+		- [The callers](#the-callers)
+	- [FAQ](#faq)
+		- [How do the scripts search for formulae and casks?](#how-do-the-scripts-search-for-formulae-and-casks)
+		- [How do you make these scripts work with Alfred?](#how-do-you-make-these-scripts-work-with-alfred)
+
 ## Features
 - Fast: Implemented in pure python, searches across 6000+ core formulae and 4000+ casks package metadata and installation statistics in 4 files (~18 MB in total), without noticeable delay.
+- Functions are modular and documented in detail.
 ### The Alfred workflow
-- Search-as-you-type: See the demo below.
+- Search-as-you-type: See the [demo](#demo) below.
 - Displays rich information about packages: name, homepage URL, formula and cask definition, version, description, and installation statistics.
   
 
-## Alfred workflow usage
+## Install
+First, clone this repo:
+```
+$ git clone https://github.com/tddschn/homebrew-alfred.git
+```
+Then download the [Alfred workflow](), open it, and modify the scripts paths to the ones in the clone repository.
+
+## Usage
+### Alfred workflow usage
 - Default keyword trigger for [formula_and_cask.py](homebrew_alfred/formula_and_cask.py) is `bb`.
   See [Project layout](#the-callers) for more info.
   Use `bb` if you don't know which trigger to use.
@@ -17,7 +43,7 @@ Python scripts for searching and displaying Homebrew package metadata, made for 
 - <kbd>cmd</kbd> + <kbd>C</kbd>: Copy the package name to be used with `brew`
 - <kbd>shift</kbd>: Activate the quicklook for the formula and cask definition ruby file
 
-## Command line usage
+### Command line usage
 ```
 $ ./formula_and_cask.py docker
 # Outputs JSON formatted data that conforms to the schema (https://www.alfredapp.com/help/workflows/inputs/script-filter/json/) specified in the Alfred doc
