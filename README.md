@@ -20,6 +20,8 @@ Python scripts for searching and displaying Homebrew package metadata, made for 
 ## Command line usage
 ```
 $ ./formula_and_cask.py docker
+# Outputs JSON formatted data that conforms to the schema (https://www.alfredapp.com/help/workflows/inputs/script-filter/json/) specified in the Alfred doc
+# 
 {
   "items": [
     {
@@ -45,6 +47,30 @@ $ ./formula_and_cask.py docker
         }
       },
       "count": "72,922"
+    },
+	{
+      "title": "docker-compose                2.4.1          #69             38,168",
+      "subtitle": "Isolated development environments using Docker",
+      "quicklookurl": "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/docker-compose.rb",
+      "arg": "docker-compose",
+      "mods": {
+        "cmd": {
+          "valid": true,
+          "arg": "https://docs.docker.com/compose/",
+          "subtitle": "https://docs.docker.com/compose/"
+        },
+        "alt": {
+          "valid": true,
+          "arg": "docker-compose",
+          "subtitle": "docker-compose"
+        },
+        "ctrl": {
+          "valid": true,
+          "arg": "file:///usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/docker-compose.rb",
+          "subtitle": "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/docker-compose.rb"
+        }
+      },
+      "count": "38,168"
     },
 	...
 }
