@@ -17,6 +17,38 @@ Python scripts for searching and displaying Homebrew package metadata, made for 
 - <kbd>cmd</kbd> + <kbd>C</kbd>: Copy the package name to be used with `brew`
 - <kbd>shift</kbd>: Activate the quicklook for the formula and cask definition ruby file
 
+## Command line usage
+```
+$ ./formula_and_cask.py docker
+{
+  "items": [
+    {
+      "title": "docker                        20.10.14       #38             72,922",
+      "subtitle": "Pack, ship and run any application as a lightweight container",
+      "quicklookurl": "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/docker.rb",
+      "arg": "docker",
+      "mods": {
+        "cmd": {
+          "valid": true,
+          "arg": "https://www.docker.com/",
+          "subtitle": "https://www.docker.com/"
+        },
+        "alt": {
+          "valid": true,
+          "arg": "docker",
+          "subtitle": "docker"
+        },
+        "ctrl": {
+          "valid": true,
+          "arg": "file:///usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/docker.rb",
+          "subtitle": "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/docker.rb"
+        }
+      },
+      "count": "72,922"
+    },
+	...
+}
+```
 
 ## Demo
 
