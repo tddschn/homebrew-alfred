@@ -136,7 +136,10 @@ The default keyboard triggers for the scripts and what they do:
 
 ### How do the scripts search for formulae and casks?
 
-The scripts take in a query term and filter the downloaded JSON metadata on these fields: `token`, `name`, `desc`.
+The scripts take in a query term and filter the downloaded JSON metadata on these fields: `token`, `name`, `desc`. 
+
+See the [example cask metadata](https://formulae.brew.sh/api/cask.json) and [example cask stats metadata](https://formulae.brew.sh/api/analytics/cask-install/homebrew-cask/30d.json).
+
 ```python
 
 # common.py
