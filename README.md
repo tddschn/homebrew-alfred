@@ -28,7 +28,11 @@ Python scripts for searching and displaying Homebrew package metadata, made for 
 ## Demo
 
 
-https://user-images.githubusercontent.com/45612704/163528051-3e3afe9f-dc06-4ebe-828e-b95b49007159.mov
+
+https://user-images.githubusercontent.com/45612704/163550187-b9aff7f7-52db-414f-a298-0c434723283d.mp4
+
+
+
 ## Install
 First, clone this repo:
 ```
