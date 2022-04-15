@@ -4,11 +4,11 @@ Python scripts for searching and displaying Homebrew package metadata, made for 
 - [homebrew-alfred](#homebrew-alfred)
 	- [Features](#features)
 		- [The Alfred workflow](#the-alfred-workflow)
+	- [Demo](#demo)
 	- [Install](#install)
 	- [Usage](#usage)
 		- [Alfred workflow usage](#alfred-workflow-usage)
 		- [Command line usage](#command-line-usage)
-	- [Demo](#demo)
 	- [Project layout](#project-layout)
 		- [Core](#core)
 		- [Config and utility](#config-and-utility)
@@ -25,6 +25,10 @@ Python scripts for searching and displaying Homebrew package metadata, made for 
 - Displays rich information about packages: name, homepage URL, formula and cask definition, version, description, and installation statistics.
   
 
+## Demo
+
+
+https://user-images.githubusercontent.com/45612704/163528051-3e3afe9f-dc06-4ebe-828e-b95b49007159.mov
 ## Install
 First, clone this repo:
 ```
@@ -102,10 +106,6 @@ $ ./formula_and_cask.py docker
 }
 ```
 
-## Demo
-
-
-https://user-images.githubusercontent.com/45612704/163528051-3e3afe9f-dc06-4ebe-828e-b95b49007159.mov
 
 
 ## Project layout
