@@ -29,7 +29,11 @@ Python scripts for searching and displaying Homebrew package metadata, made for 
 
 
 
-https://user-images.githubusercontent.com/45612704/163550187-b9aff7f7-52db-414f-a298-0c434723283d.mp4
+
+https://user-images.githubusercontent.com/45612704/164175793-c6899cc7-133e-47f4-86dc-37e4807897ae.mp4
+
+
+
 
 
 
