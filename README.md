@@ -1,28 +1,31 @@
 # homebrew-alfred
-Python scripts for searching and displaying Homebrew package metadata, made for Alfred.
+Python scripts for searching and displaying Homebrew package metadata, and executing common brew commands, made for Alfred Workflow.
 
 - [homebrew-alfred](#homebrew-alfred)
-	- [Features](#features)
-		- [The Alfred workflow](#the-alfred-workflow)
-	- [Demo](#demo)
-	- [Install](#install)
-	- [Usage](#usage)
-		- [Alfred workflow usage](#alfred-workflow-usage)
-		- [Command line usage](#command-line-usage)
-	- [Project layout](#project-layout)
-		- [Core](#core)
-		- [Config and utility](#config-and-utility)
-		- [The callers](#the-callers)
-	- [FAQ](#faq)
-		- [How do the scripts search for formulae and casks?](#how-do-the-scripts-search-for-formulae-and-casks)
-		- [How do you make these scripts work with Alfred?](#how-do-you-make-these-scripts-work-with-alfred)
+  - [Features](#features)
+    - [The Alfred workflow](#the-alfred-workflow)
+  - [Demo](#demo)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Alfred workflow usage](#alfred-workflow-usage)
+    - [Command line usage](#command-line-usage)
+  - [Project layout](#project-layout)
+    - [Core](#core)
+    - [Config and utility](#config-and-utility)
+    - [The callers (Alfred Workflow scripts filter entry points)](#the-callers-alfred-workflow-scripts-filter-entry-points)
+    - [Secondary script filter scripts](#secondary-script-filter-scripts)
+    - [Command runners](#command-runners)
+  - [FAQ](#faq)
+    - [How do the scripts search for formulae and casks?](#how-do-the-scripts-search-for-formulae-and-casks)
+    - [How do you make these scripts work with Alfred?](#how-do-you-make-these-scripts-work-with-alfred)
 
 ## Features
-- Fast: Implemented in pure python, searches across 6000+ core formulae and 4000+ casks package metadata and installation statistics in 4 files (~18 MB in total), without noticeable delay.
+- Fast filtering of packages: Implemented in pure python, searches across 6000+ core formulae and 4000+ casks package metadata and installation statistics in 4 files (~18 MB in total), without noticeable delay.
 - Functions are modular and documented in detail.
 ### The Alfred workflow
 - Search-as-you-type: See the [demo](#demo) below.
 - Displays rich information about packages: name, homepage URL, formula and cask definition, version, description, and installation statistics.
+- Run brew command on selected packages. Supported commands: `['install', 'upgrade', 'uninstall', 'home', 'info', 'services']
   
 
 ## Demo
@@ -44,6 +47,8 @@ $ git clone https://github.com/tddschn/homebrew-alfred.git
 ```
 Then download the [Alfred workflow](https://github.com/tddschn/homebrew-alfred/releases/download/0.1.0/homebrew.search.alfredworkflow), open it, and modify the scripts paths to the ones in the clone repository.
 
+Depending on your local python installation, you may need to edit the shebangs of the scripts to `python3.10+`.
+
 ## Usage
 ### Alfred workflow usage
 - Default keyword trigger for [formula_and_cask.py](homebrew_alfred/formula_and_cask.py) is `bb`.
@@ -54,6 +59,7 @@ Then download the [Alfred workflow](https://github.com/tddschn/homebrew-alfred/r
 - <kbd>opt</kbd>: Show package name
 - <kbd>cmd</kbd> + <kbd>C</kbd>: Copy the package name to be used with `brew`
 - <kbd>shift</kbd>: Activate the quicklook for the formula and cask definition ruby file
+- <kbd>enter</kbd>: Execute supported brew command on the selected package. See [Features](#the-alfred-workflow) for supported commands.
 
 ### Command line usage
 ```
@@ -114,6 +120,36 @@ $ ./formula_and_cask.py docker
 }
 ```
 
+```
+$ package=docker ./brew_commands.py stall
+# the script only outputs entries with commands where the string 'stall' is in the command.
+
+{
+    "items": [
+        {
+            "uid": "install",
+            "title": "install",
+            "arg": "install",
+            "subtitle": "brew install docker",
+            "autocomplete": "brew install docker",
+            "icon": {
+                "path": "~/config/scripts/alfred/homebrew-search/homebrew.png"
+            }
+        },
+        {
+            "uid": "uninstall",
+            "title": "uninstall",
+            "arg": "uninstall",
+            "subtitle": "brew uninstall docker",
+            "autocomplete": "brew uninstall docker",
+            "icon": {
+                "path": "~/config/scripts/alfred/homebrew-search/homebrew.png"
+            }
+        }
+    ]
+}
+```
+
 
 
 ## Project layout
@@ -125,7 +161,7 @@ Most of the logic is in [common.py](homebrew_alfred/common.py)
 - [config.py](homebrew_alfred/config.py) Sets the URL to the APIs and the paths to store the downloaded JSON files.
 - [download_jsons.py](homebrew_alfred/download_jsons.py) A utility script that downloads Homebrew formulae and casks JSON metadata from the [Homebrew API](https://formulae.brew.sh/docs/api/)
 
-### The callers
+### The callers (Alfred Workflow scripts filter entry points)
 
 The default keyboard triggers for the scripts and what they do:
 - <kbd>bbf</kbd> [formula.py](homebrew_alfred/formula.py) Searches Homebrew core formulae.
@@ -134,7 +170,14 @@ The default keyboard triggers for the scripts and what they do:
 	- <kbd>bbcw</kbd> [cask_word.py](homebrew_alfred/cask_word.py): Searches only whole words.
 - <kbd>bb</kbd> [formula_and_cask.py](homebrew_alfred/formula_and_cask.py) Searches Homebrew core formulae and casks.
 	- <kbd>bbw</kbd> [formula_and_cask_word.py](homebrew_alfred/formula_and_cask_word.py): Searches only whole words.
+  
+When the user press <kbd>enter</kbd> on the result in alfred, the package name is stored in the workflow run and used by [Secondary script filter scripts](#secondary-script-filter-scripts) and [Command runners](#command-runners).
 
+### Secondary script filter scripts
+- [brew_commands.py](homebrew_alfred/brew_commands.py) Lists brew commands and filters the outputs based on user input. Preview of the full command is shown to the user for confirmation. The command chosen is passed to the command runner.
+
+### Command runners
+- [brew_do.py](homebrew_alfred/brew_do.py) Run the selected command on the selected package, track the status code return by the command and display success or error messages to the user (via Alfred's [Large Type](https://www.alfredapp.com/help/features/large-type/).
 
 ## FAQ
 
