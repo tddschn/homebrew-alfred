@@ -11,6 +11,7 @@ homebrew_package_commands: list[str] = [
     'install',
     'upgrade',
     'uninstall',
+    'uninstall --zap',
     'home',
     # 'services',
     'info',
